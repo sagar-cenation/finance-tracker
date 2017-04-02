@@ -5,6 +5,13 @@ class UserStocksController < ApplicationController
   # GET /user_stocks.json
   def index
     @user_stocks = UserStock.all
+    respond_to do |format|
+        format.html
+        format.pdf do
+          pdf = StockPdf.new(@user_stocks)
+          send_data pdf.render, filename: 'list.pdf', type: 'application/pdf', disposition: "inline"
+        end
+      end
   end
 
   # GET /user_stocks/1

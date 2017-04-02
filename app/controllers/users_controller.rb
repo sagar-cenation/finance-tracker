@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 	def my_portfolio
 		@user_stocks = current_user.stocks.paginate(page: params[:page], per_page: 5)
-		@user = current_user
+		@user = current_user		
+	    
 	end
 
 	def my_friends
